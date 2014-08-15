@@ -88,9 +88,19 @@ class FilterManager
             $image = $this->loaders[$eachFilter]->load($image, $eachOptions);
         }
 
-        $filteredContent = $image->get($binary->getFormat(), array(
+        $options = array(
             'quality' => $config['quality']
-        ));
+        );
+        if (isset($config['jpeg_quality'])) {
+            $options['jpeg_quality'] = $config['jpeg_quality'];
+        }
+        if (isset($config['png_compression_level'])) {
+            $options['png_compression_level'] = $config['png_compression_level'];
+        }
+        if (isset($config['png_compression_filter'])) {
+            $options['png_compression_filter'] = $config['png_compression_filter'];
+        }
+        $filteredContent = $image->get($binary->getFormat(), $options);
 
         return new Binary($filteredContent, $binary->getMimeType(), $binary->getFormat());
     }
