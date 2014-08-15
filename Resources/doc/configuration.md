@@ -29,6 +29,9 @@ liip_imagine:
         name:
             path:                 ~
             quality:              100
+            jpeg_quality:         ~
+            png_compression_level:  ~
+            png_compression_filter: ~
             format:               ~
             cache:                ~
             data_loader:          ~
@@ -70,7 +73,10 @@ Each filter set that you specify has the following options:
  - `filters` - determine the type of filter to be used (refer to *Filters* section for more information)
     and options that should be passed to the specific filter type
  - `path` - used in place of the filter name to determine the path in combination with the global `cache_prefix`
- - `quality` - override the default quality of 100 for the generated images
+ - `quality` - override the default quality of 100 for the generated images **(deprecated)**
+ - `jpeg_quality` - override the quality for jpeg images (this overrides the `quality` option above)
+ - `png_compression_level` - set the compression level for png images (0-9) (this overrides the `quality` option above)
+ - `png_compression_filter` - set the compression filter for png images (see the `filters` parameter for `imagepng` function in PHP manual for more details)
  - `cache` - override the default cache setting
  - `data_loader` - override the default data loader
  - `controller`
